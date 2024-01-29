@@ -57,7 +57,6 @@ class SampleApp(Tk):
         Tk.__init__(self)
 
         self.title('Канадские шашки')
-        # self.geometry(str(WIDTH) + 'x' + str(HEIGHT))
         self.resizable(0, 0)
         self.configure(bg=bg_color)
 
@@ -179,7 +178,6 @@ class Sign_up_page(Frame):
 
         frame1 = Frame(self, bg=bg_color)
         frame1.grid(row=0, column=0)
-        # frame = Frame(self, bg=bg_color).grid(row=0, column=2)
         style = ttk.Style()
         style.configure('TButton', background='slateblue', borderwidth=30)
 
@@ -241,7 +239,6 @@ o_res = 0
 pos1_x = -1  # клетка не задана
 
 def on_close(window):
-    # window.deiconify()
     window.destroy()
 
 class Game_page():
@@ -250,14 +247,10 @@ class Game_page():
 
     def __init__(self, master):
         game_window = Toplevel(master)
-        # Frame.__init__(self, master)
-        # Frame.configure(self, bg=bg_color)
         game_window.title("Канадские шашки")
         game_window.resizable(0, 0)
         game_window.wm_attributes("-topmost", 1)
         game_window.protocol("WM_DELETE_WINDOW", lambda window=game_window: on_close(window))
-        # global fa
-        # fa = Game_page
 
         global board
         board = Canvas(game_window, width=WIDTH, height=HEIGHT, bg="white")
@@ -313,7 +306,7 @@ class Game_page():
                         board.create_image(x * k, y * k, anchor=NW, image=pieces[z])
         # рисуем активную шашку
         z = scene[y_pos_1][x_pos_1]
-        if z:  # ???
+        if z:  # в этой клетке есть шашка?
             board.create_image(x_pos_1 * k, y_pos_1 * k, anchor=NW, image=pieces[z], tag='ani')
         # вычисление коэф. для анимации
         kx = 1 if x_pos_1 < x_pos_2 else -1
@@ -358,7 +351,7 @@ class Game_page():
                 pos1_x = -1  # клетка не выбрана
                 board.coords(red_frame, -5, -5, -5, -5)  # рамка вне поля
 
-    def comp_move(self):  # !!!
+    def comp_move(self):
 
         global comp_moves_f_list
         self.check_comp_move(1, (), [])
